@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>用户注册</title>
+		<link href="注册验证.css" type="text/css" rel="stylesheet" />
+	</head>
+	<body>
+		<div class="bigbox">
+			<div class="username">
+				<label>
+					<span>会 员 名：</span>
+					<input type="text" id="text" class="kuang" maxlength="25"/>
+				</label> 
+				<i class="imgs"style="display: none;"></i>
+				<span class="tishi">5-25个字符，一个汉字为两个字符，推荐使用中文会员名。</span>
+				<p class="jishu">0个字符</p>
+			</div>
+			<div class="uesrpad">
+				<label>
+					<span>登录密码：</span>
+					<input type="password" id="pasd"  class="kuang" maxlength="16" />
+				</label> 
+				<i class="imgs" style="display: none;"></i>
+				<span class="tishi">5-25个字符，一个汉字为两个字符</span>
+				<p class="qiangdu">
+					<em>弱</em>
+					<em>中</em>
+					<em>强</em>
+				</p>
+			</div>
+			<div class="pad2">
+				<label>
+					<span>确认密码：</span>
+					<input type="password" id="pad2" class="kuang"/>
+				</label> 
+				<i class="imgs" style="display: none;"></i>
+				<span class="tishi">请再输一次</span>
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+ //计算输入的字符数长度
+	function getLength(str){
+	  // \x00-xff代表单字节字符。
+	  return str.replace(/[^\x00-\xff]/g, "xx").length;
+	}
+	
+	window.onload = function(){
+		var text=document.getElementById('text');
+		var pasd=document.getElementById('pasd');
+		var pasd2=document.getElementById('pad2');
+		var imgs=document.getElementsByClassName('imgs');
+		var tishi=document.getElementsByClassName('tishi');
+		text.onblur= function(){
+			if(text.value==''){
+				imgs[0].style.display='inline-block';
+				tishi[0].innerHTML='不能为空!'
+				imgs[0].style.backgroundPositionX='-17'+'px'
+			imgs[0].style.backgroundPositionY='-100'+"px"
+			}else{
+				var lengs=text.value.length;
+				if(lengs<5){
+			imgs[0].style.display='inline-block';
+			tishi[0].innerHTML='不能少于6个字符'
+			imgs[0].style.backgroundPositionX='-17'+'px'
+			imgs[0].style.backgroundPositionY='-100'+"px"
+		}else{
+			imgs[0].style.display='inline-block';
+			imgs[0].style.backgroundPositionX=0;
+			imgs[0].style.backgroundPositionY='-117'+"px"
+			tishi[0].innerHTML='OK!'
+		}
+			}
+			
+		}
+		text.onfocus= function(){
+			imgs[0].style.display='none';
+				tishi[0].innerHTML='5-25个字符，一个汉字为两个字符，推荐使用中文会员名。'
+		}
+		text.onkeyup=function(){
+			var jishu=document.getElementsByClassName('jishu')[0];
+			jishu.style.display='block'
+			LH=getLength(this.value)
+			jishu.innerHTML=LH+'个字符'
+			if(text.value.length==0){
+				jishu.style.display='none'
+			}
+		}
+		pasd.onblur = function(){
+			var reg_n = /[^\d]/g;
+	        var reg_c = /[^a-zA-Z]/g;
+	        
+			if(pasd.value==''){
+				imgs[1].style.display='inline-block';
+				tishi[1].innerHTML='不能为空!'
+				imgs[1].style.backgroundPositionX='-17'+'px'
+			imgs[1].style.backgroundPositionY='-100'+"px"
+			}else{
+				if(pasd.value.length<6){
+				imgs[1].style.display='inline-block';
+				tishi[1].innerHTML='长度应为6-16个字符'
+				imgs[1].style.backgroundPositionX='-17'+'px'
+			imgs[1].style.backgroundPositionY='-100'+"px"
+			    }else{
+			    	if(!reg_n.test(this.value)){
+	            imgs[1].style.display='inline-block';
+				tishi[1].innerHTML='不能全为数字'
+				imgs[1].style.backgroundPositionX='-17'+'px'
+			imgs[1].style.backgroundPositionY='-100'+"px"
+	                 }else{
+	                 	imgs[1].style.display='inline-block';
+	                 	imgs[1].style.backgroundPositionX=0
+						imgs[1].style.backgroundPositionY='-117'+"px"
+						tishi[1].innerHTML='OK!'
+	                 }
+			    }
+			    
+			}
+			
+		}
+		pasd.onfocus = function(){
+			imgs[1].style.display='none';
+				tishi[1].innerHTML='6-16个字符，请使用字母加数字或符号的混合密码，不能单独使用字母，数字或符号。'
+		}
+		pasd.onkeydown = function(){
+			var qiangdu = document.getElementsByTagName('em')
+			
+			if(pasd.value.length>0){
+				qiangdu[0].style.backgroundColor='greenyellow'
+			}else{
+				qiangdu[0].style.backgroundColor=''
+			}
+			if(pasd.value.length>5){
+				qiangdu[1].style.backgroundColor='greenyellow'
+			}else{
+				qiangdu[1].style.backgroundColor=''
+			}
+			if(pasd.value.length>10){
+				qiangdu[2].style.backgroundColor='greenyellow'
+			}else{
+				qiangdu[2].style.backgroundColor=''
+			}
+		}
+		pasd2.onblur=function(){
+			var reg_n = /[^\d]/g;
+	        var reg_c = /[^a-zA-Z]/g;
+			if(pasd2.value==''){
+				imgs[2].style.display='inline-block';
+				tishi[2].innerHTML='不能为空!'
+				imgs[2].style.backgroundPositionX='-17'+'px'
+			imgs[2].style.backgroundPositionY='-100'+"px"
+			}else{
+				if(pasd2.value.length<6){
+				imgs[2].style.display='inline-block';
+				tishi[2].innerHTML='长度应为6-16个字符'
+				imgs[2].style.backgroundPositionX='-17'+'px'
+			imgs[2].style.backgroundPositionY='-100'+"px"
+			    }else{
+			    	if(!reg_n.test(this.value)){
+	            imgs[2].style.display='inline-block';
+				tishi[2].innerHTML='不能全为数字'
+				imgs[2].style.backgroundPositionX='-17'+'px'
+			imgs[2].style.backgroundPositionY='-100'+"px"
+	                 }else{
+	                 	if(pasd2.value==pasd.value){
+	                 		imgs[2].style.display='inline-block';
+	                 	imgs[2].style.backgroundPositionX=0
+						imgs[2].style.backgroundPositionY='-117'+"px"
+						tishi[2].innerHTML='OK!'
+	                 	}else{
+	                 		imgs[2].style.display='inline-block';
+	                 		imgs[2].style.backgroundPositionX='-17'+'px'
+							imgs[2].style.backgroundPositionY='-100'+"px"
+							tishi[2].innerHTML='两次密码不一致'
+	                 	}
+	                 }
+			    }
+			    
+			}
+			
+		}
+		pasd2.onfocus=function(){
+			imgs[2].style.display='none';
+			    tishi[2].innerHTML='请再输一次'
+		}
+	}
+</script>

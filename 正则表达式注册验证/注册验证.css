@@ -1,0 +1,52 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	
+	font-size: 20px;
+}
+.bigbox{
+	width: 80%;
+	height: 200px;
+	margin: 100px auto;
+	border: 1px dashed lightskyblue;
+}
+.uesrpad,.pad2{
+	height: 50px;
+	margin: 10px 0 0 20px;
+}
+.username{
+	height: 50px;
+	margin: 20px 0 0 20px;
+}
+.kuang{
+	box-shadow: 0 0 2px #AAAAAA inset;
+}
+.jishu{
+	margin-left: 110px;
+	display:none ;
+}
+.qiangdu{
+	margin-top: 5px;
+	margin-left: 120px;
+}
+.qiangdu em{
+	font-style: normal;
+	line-height: 15px;
+	font-size: 12px;
+	width: 40px;
+	height: 15px;
+	display: inline-block;
+	background-color: bisque;
+	text-align: center;
+	color: #CCCCCC;
+	transition: background-color 0.5s;
+}
+.imgs{
+	background: url(images/icon.png) no-repeat ;
+	display: inline-block;
+	height: 16px;
+	width: 16px;
+	background-position: -17px -100px;
+}
